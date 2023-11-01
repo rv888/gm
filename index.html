@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
     <meta name="lightning" content="lnurlp:gamemasters@getalby.com"/>
     <link rel="icon" href="https://gamemasters.social/images/icon.png" sizes="192x192" />
     <meta name="description" content="AI-powered Text Based Nostr RPG games">
@@ -17,155 +17,131 @@
 
     <title>Game Masters: AI-powered Text Based RPG games on Nostr</title>
     <meta property="og:title" content="Game Masters: AI-powered Text Based RPG games on Nostr">
-
-
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body{
-            background: black;
+        body {
+            background-color: black;
+        }
+
+        header,
+        section,
+        footer {
             color: white;
         }
+
+        .btn-purple {
+            background-color: purple;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            margin: 0.5rem;
+        }
+
         .hero {
-            background-image: url('https://i.nostr.build/8eEJ.jpg');
-            background-size: cover;
-            color: #fff;
-        }
-        .hero .section-description {
-            margin-bottom: 4rem;
-        }
-        .hero-heading {
-            text-shadow: 2px 2px 4px #000000;
-        }
-        p, a{
-            font-size: 2.0rem;
-        }
-        .button.button-secondary,
-        button.button-secondary,
-        input[type="submit"].button-secondary,
-        input[type="reset"].button-secondary,
-        input[type="button"].button-secondary {
-            color: #FFF;
-            background-color: #ae33f0;
-            border-color: #ae33f0; }
-
-        .button.button-secondary:hover,
-        button.button-secondary:hover,
-        input[type="submit"].button-secondary:hover,
-        input[type="reset"].button-secondary:hover,
-        input[type="button"].button-secondary:hover,
-        .button.button-secondary:focus,
-        button.button-secondary:focus,
-        input[type="submit"].button-secondary:focus,
-        input[type="reset"].button-secondary:focus,
-        input[type="button"].button-secondary:focus {
-            color: #FFF;
-            background-color: #5a177e;
-            border-color: #5a177e; }
-
-        /* Bigger than 550 */
-        @media (min-width: 550px) {
-            section {
-                padding: 6rem 0 6rem;
-            }
-            .hero {
-                padding-bottom: 12rem;
-                text-align: left;
-                height: 165px;
-            }
-            .hero-heading {
-                font-size: 2.4rem;
-            }
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Bigger than 750 */
-        @media (min-width: 750px) {
-            .hero {
-                height: 190px;
-            }
-            .hero-heading {
-                font-size: 2.6rem;
-            }
-            section {
-                padding: 6rem 0 6rem;
-            }
-            .hero {
-                padding: 16rem 0 14rem;
-            }
-            .section-description {
-                max-width: 60%;
-                margin-left: auto;
-                margin-right: auto;
-            }
+        .hero img {
+            width: 100%;
+            height: 75vh;
+            object-fit: cover;
         }
 
-        /* Bigger than 1000 */
-        @media (min-width: 1000px) {
-            section {
-                padding: 6rem 0 6rem;
-            }
-            .hero {
-                padding: 22rem 0;
-            }
-            .hero-heading {
-                font-size: 6.0rem;
-            }
-            .hero p{
-                font-size: 2.0em;
-            }
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
 
+        .hero-text h1 {
+            font-size: 400%;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        h2 {
+            font-size: 175%;
+        }
+
+        footer {
+            background-color: #343a40;
         }
     </style>
 </head>
+
 <body>
 
-    <section class="hero">
-        <div class="container">
-            <h1 class="hero-heading">Choose Your Fate Game</h1>
-            <p>An AI-powered Text Based RPG games on Nostr</p>
-            <a href="https://snort.social/p/npub1l6jqp0h7kkl3zkck2a0zza4lhk8m32ueskkpwzkmgq4l3jymn59q7ezyfy" target="_new" class="button button-secondary">Play on Nostr</a>
-        </div>
-    </section>
+<!-- Hero image with overlaid text -->
+<div class="hero">
+    <img src="https://i.nostr.build/8eEJ.jpg" alt="Hero" class="img-fluid">
+    <div class="hero-text">
+        <h1 class="display-4 font-weight-bold">Game Masters</h1>
+        <p>Games on Nostr that zap you Satoshis</p>
+    </div>
+</div>
 
-    <section class="details">
-        <div class="container">
-            <div class="row">
-                <div class="twelve columns">
-                    <a href="https://sonofvin.com">Made by Son of Vin</a>
-                    <br><br>
-                    <p>Nostr address: fate@gamemasters.social</p>
-
-                    <p>Are you a fan of Choose Your Own Adventure books? Play 100+ quick AI-powered Text Based RPG games on Nostr.</p>
-
-                    <p>To start a game, make a new post that tags this account and "start game".</p>
-
-                    <p>Example: @ChooseYourFate start game</p>
-
-                    <p>It should start within a minute or so.</p>
-
-                    <p>There are storylines for animal, viking, superhero, pulp, war, action, mystery, treasure, pirate, zombies, fantasy, scifi, robots, terminator, aliens, disaster, wuxia, xianxia, and horror.</p>
-
-                    <p>Reference any of these specific game keywords when you want to play. To play women centric games, use woman as your keyword.</p>
-
-                    <p>Example: @ChooseYourFate start game superhero</p>
-
-                    <p> There are even some hidden easter egg storylines only available by keyword!</p>
-
-                    <p>To play, you must be writing to any of the following relays: Nostr.wine, Damus, MutinyWallet, Relayable.</p>
-
-                    <p>The game will timeout in 5 mins if it doesn't get a response from you.</p>
-
-                    <p>Each game lasts on average 30 mins.</p>
-
-                    <p>This account will also randomly post GROUP GAMES which allow anyone to join in and play together. A pool of Sats will be split between all who play if the game is won.</p>
-
-                    <p>The bot will also randomly post GROUP GAMES which allow anyone to join in and play together. A pool of Sats will be split between all who play if the game is won.</p>
-                </div>
+<!-- Section 1 -->
+<section class="py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="https://i.nostr.build/60gq.webp" alt="Game" class="img-fluid">
+            </div>
+            <div class="col-md-6 text-left">
+                <h2>Choose Your Fate Game</h2>
+                <p>Play 100+ quick AI-powered Text Based role playing games on Nostr...</p>
+                <a href="https://snort.social/p/npub1l6jqp0h7kkl3zkck2a0zza4lhk8m32ueskkpwzkmgq4l3jymn59q7ezyfy" class="btn btn-purple">Follow to play</a>
             </div>
         </div>
-    </section>
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 <a href="https://www.versusmedia.com">VersusMedia</a> All rights reserved.</p>
+    </div>
+</section>
+
+<!-- Section 2 -->
+<section class="bg-dark py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-right">
+                <h2>Trivia Masters</h2>
+                <p>I am a general trivia bot...</p>
+                <a href="https://snort.social/p/npub1xcfdvc9whp285aqfn7yjf70e9c53nafzr5a2lr8vkeu4a0g075yq7j8tua" class="btn btn-purple">Follow to play</a>
+            </div>
+            <div class="col-md-6">
+                <img src="https://i.nostr.build/yYxm.png" alt="Trivia" class="img-fluid">
+            </div>
         </div>
-    </footer>
+    </div>
+</section>
+
+<!-- Section 3 -->
+<section class="py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="https://i.nostr.build/lZxn.webp" alt="Wine" class="img-fluid">
+            </div>
+            <div class="col-md-6 text-left">
+                <h2>Wine Masters Trivia</h2>
+                <p>I am a trivia bot and will randomly post mostly wine trivia questions...</p>
+                <a href="https://snort.social/p/npub1uwsqvds08e9pnvlrpe0dyvkkphrza8rn3hdwsa6hkuumw5msgupsdg54fz" class="btn btn-purple">Follow to play</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center py-2">
+    <p><a href="https://sonofvin.com" class="text-white">Made by Son of Vin</a></p>
+    <p>&copy; 2023 <a href="https://www.versusmedia.com" class="text-white">VersusMedia</a> All rights reserved.</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>
