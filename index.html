@@ -18,6 +18,7 @@
     <title>Game Masters: Nostr Games</title>
     <meta property="og:title" content="Game Masters: AI-powered Text Based RPG games on Nostr">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         body {
             background-color: black;
@@ -70,6 +71,14 @@
 
         footer {
             background-color: #343a40;
+        }
+        .image-column {
+            width: 20%;
+            max-width: 20%;
+        }
+        .image-column img {
+            width: 100%;
+            height: auto;
         }
     </style>
 </head>
@@ -136,6 +145,22 @@
     </div>
 </section>
 
+<section class="py-4">
+    <div class="container mt-4">
+        <table class="table table-responsive" id="winners">
+            <thead>
+            <tr>
+                <th class="image-column"></th>
+                <th>Name</th>
+                <th>Won</th>
+            </tr>
+            </thead>
+            <tbody id="winners_body">
+            </tbody>
+        </table>
+    </div>
+</section>
+
 <!-- Footer -->
 <footer class="text-center py-2">
     <p><a href="https://sonofvin.com" class="text-white">Made by Son of Vin</a></p>
@@ -145,6 +170,69 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/nostr-tools/lib/nostr.bundle.js"></script>
+
+<script>
+
+    let relays = ['wss://purplepag.es', 'wss://relay.damus.io'];
+    const pool = new window.NostrTools.SimplePool();
+    function get_user_details(pk,won){
+        let sub = pool.sub(
+            [...relays],
+            [
+                {
+                    kinds: [0],
+                    authors: [pk],
+                },
+            ],
+        )
+        sub.on('event', event => {
+            var nostrJson = JSON.parse(event.content);
+            console.log(nostrJson);
+            create_div(nostrJson, won);
+        })
+        sub.on('eose', () => {
+            sub.unsub()
+        })
+
+    }
+
+    function create_div(person,won){
+        let table = document.getElementById('winners_body'),
+            row = document.createElement('tr'),
+            cell1 = document.createElement('td'),
+            cell2 = document.createElement('td'),
+            cell3 = document.createElement('td'),
+            img = document.createElement('img');
+        img.src = person.picture;
+        img.alt = person.display_name;
+        img.classList.add('img-fluid');
+        cell1.classList.add('image-column');
+        cell1.appendChild(img);
+        cell2.innerHTML = person.display_name;
+        cell3.innerHTML = won.toString();
+        row.appendChild(cell1);
+        row.appendChild(cell2);
+        row.appendChild(cell3);
+        table.appendChild(row);
+    }
+
+    var filename = "7_days.json", url = "https://vsm.sfo3.cdn.digitaloceanspaces.com/wm/"+filename;
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            Object.entries(data).forEach(([key, value]) => {
+                console.log(`Key: ${key}, Value: ${value}`);
+                get_user_details(key, value);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching JSON:', error);
+        });
+
+</script>
+
+
 </body>
 
 </html>

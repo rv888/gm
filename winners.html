@@ -87,7 +87,7 @@ function get_user_details(pk,won){
     console.log(nostrJson);
 
     create_div(nostrJson, won);
-    
+
 
   })
 
@@ -109,7 +109,7 @@ function create_div(person,won){
 
   var cell1 = document.createElement('td'), img = document.createElement('img');
   img.src = person.picture;
-  img.alt = person.display_name; 
+  img.alt = person.display_name;
   img.classList.add('img-fluid');
   cell1.classList.add('image-column');
 
@@ -155,15 +155,12 @@ fetch(url)  // Replace with your JSON URL
         Object.entries(data).forEach(([key, value]) => {
             console.log(`Key: ${key}, Value: ${value}`);
             get_user_details(key, value);
-            
+
         });
     })
     .catch(error => {
         console.error('Error fetching JSON:', error);
     });
-
-
-
 
 </script>
 
