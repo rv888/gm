@@ -24,6 +24,10 @@
             background-color: black;
         }
 
+        .winner_count {
+            font-size: 1.4rem;
+        }
+
         header,
         section,
         footer {
@@ -73,12 +77,15 @@
             background-color: #343a40;
         }
         .image-column {
-            width: 20%;
-            max-width: 20%;
+            width: 30%;
+            max-width: 30%;
         }
         .image-column img {
             width: 100%;
             height: auto;
+        }
+        .table{
+            color: #fff;
         }
     </style>
 </head>
@@ -210,6 +217,7 @@
         cell1.classList.add('image-column');
         cell1.appendChild(img);
         cell2.innerHTML = person.display_name;
+        cell3.classList.add('winner_count');
         cell3.innerHTML = won.toString();
         row.appendChild(cell1);
         row.appendChild(cell2);
