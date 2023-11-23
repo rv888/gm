@@ -213,12 +213,12 @@
         sub.on('event', event => {
             var nostrJson = JSON.parse(event.content);
             console.log(event);
-            console.log(! people.includes(nostrJson.username));
-            console.log(nostrJson.username);
+            console.log(! people.includes(event.pubkey));
+            console.log(event.pubkey);
             console.log(people);
-            if (! people.includes(nostrJson.username)) {
+            if (! people.includes(event.pubkey)) {
                 console.log("INSIDE");
-                people.append(nostrJson.username);
+                people.append(event.pubkey);
                 create_div(nostrJson, won);
             }
         })
