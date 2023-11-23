@@ -205,6 +205,7 @@
         sub.on('event', event => {
             var nostrJson = JSON.parse(event.content);
             console.log(nostrJson);
+            console.log(won);
             create_div(nostrJson, won);
         })
         sub.on('eose', () => {
@@ -215,7 +216,8 @@
 
     function create_div(person,won){
         console.log("create_div");
-        console(person,won);
+        console(person);
+        console.log(won);
 
         let table = document.getElementById('winners_body'),
             row = document.createElement('tr'),
@@ -230,7 +232,7 @@
         cell1.appendChild(img);
         cell2.innerHTML = person.name;
         cell3.classList.add('winner_count');
-        cell3.innerHTML = won.toString();
+        cell3.innerHTML = won;
         row.appendChild(cell1);
         row.appendChild(cell2);
         row.appendChild(cell3);
