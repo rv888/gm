@@ -218,7 +218,7 @@
             console.log(people);
             if (! people.includes(event.pubkey)) {
                 console.log("INSIDE");
-                people.append(event.pubkey);
+                people.push(event.pubkey);
                 create_div(nostrJson, won);
             }
         })
