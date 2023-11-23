@@ -1,4 +1,36 @@
-<div id="winners"></div>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .image-column {
+            width: 20%;
+            max-width: 20%;
+        }
+        .image-column img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+
+    <!--                     <td class="image-column"><img src="image_url.jpg" class="img-fluid" alt="Responsive image"></td>
+-->
+
+
+<div class="container mt-4">
+        <table class="table table-responsive" id="winners">
+            <thead>
+                <tr>
+                    <th class="image-column"></th>
+                    <th>Name</th>
+                    <th>Won</th>
+                </tr>
+            </thead>
+            <tbody id="winners_body">
+            </tbody>
+        </table>
+    </div>
 
 <script src="https://unpkg.com/nostr-tools/lib/nostr.bundle.js"></script>
 <script>
@@ -70,17 +102,30 @@ function get_user_details(pk,won){
 function create_div(person,won){
 
   console.log(person);
-  var winners = document.getElementById('winners');
 
+  var table = document.getElementById('winners_body');
 
-    //document.getElementById('picture1').src = nostrJson.picture;
-    //document.getElementById('name').innerHTML = nostrJson.display_name;
+  var row = document.createElement('tr');
 
-    var newElement = document.createElement('div');
-    newElement.innerHTML = person.display_name + ": " + won.toString();
+  var cell1 = document.createElement('td'), img = document.createElement('img');
+  img.src = person.picture;
+  img.alt = person.display_name; 
+  img.classList.add('img-fluid');
+  cell1.classList.add('image-column');
 
-    // Append the new element to the div
-    winners.appendChild(newElement);
+  cell1.appendChild(img);
+
+  var cell2 = document.createElement('td');
+  var cell3 = document.createElement('td');
+
+  cell2.innerHTML = person.display_name;
+  cell3.innerHTML = won.toString();
+
+  row.appendChild(cell1);
+  row.appendChild(cell2);
+  row.appendChild(cell3);
+
+  table.appendChild(row);
 
 }
 
