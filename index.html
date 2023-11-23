@@ -212,12 +212,7 @@
         )
         sub.on('event', event => {
             var nostrJson = JSON.parse(event.content);
-            console.log(event);
-            console.log(! people.includes(event.pubkey));
-            console.log(event.pubkey);
-            console.log(people);
             if (! people.includes(event.pubkey)) {
-                console.log("INSIDE");
                 people.push(event.pubkey);
                 create_div(nostrJson, won);
             }
@@ -229,9 +224,6 @@
     }
 
     function create_div(person,won){
-        console.log("create_div");
-        console.log(person);
-        console.log(won);
 
         let table = document.getElementById('winners_body'),
             row = document.createElement('tr'),
@@ -258,14 +250,12 @@
 
     function runTimer(){
         winnerTimer = setTimeout(() => {
-            console.log("Timer executed");
             sortTable();
         }, 6000);
     }
 
     function loadWinners(filename) {
         var url = "https://vsm.sfo3.cdn.digitaloceanspaces.com/wm/" + filename;
-        console.log(url);
         fetch(url)
             .then(response => response.json())
             .then(data => {
@@ -312,7 +302,6 @@
                 rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                 switching = true;
             }
-            console.log("SW");
         }
     }
     document.getElementById('last_7_days').addEventListener('click', function(event) {
