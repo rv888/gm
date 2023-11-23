@@ -90,6 +90,10 @@
             text-decoration: underline;
             font-weight: bold;
         }
+        .durations {
+            font-size: 80%;
+            font-weight: normal;
+        }
     </style>
 </head>
 
@@ -157,7 +161,7 @@
 
 <section class="bg-dark py-4">
     <div class="container mt-4">
-        <h2>Top Trivia Winners <span class="durations"><a href="" id="last_7_days">Last 7 Days</a> | <a href="" id="last_month">Last Month</a> | </span></h2>
+        <h2>Top Trivia Winners: <span class="durations"><a href="" id="last_7_days">Last 7 Days</a> | <a href="" id="last_month">Last Month</a> | </span></h2>
         <table class="table table-responsive col-sm-10" id="winners">
             <thead>
             <tr>
@@ -210,6 +214,9 @@
     }
 
     function create_div(person,won){
+        console.log("create_div");
+        console(person,won);
+
         let table = document.getElementById('winners_body'),
             row = document.createElement('tr'),
             cell1 = document.createElement('td'),
@@ -241,6 +248,7 @@
     }
 
     function sortTable() {
+        console.log("sortTable");
         var tbody, rows, switching, i, x, y, shouldSwitch;
         tbody = document.getElementById("winners").getElementsByTagName("tbody")[0];
         switching = true;
