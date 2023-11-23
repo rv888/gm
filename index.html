@@ -206,6 +206,8 @@
     }
 
     function create_div(person,won){
+        console.log(person);
+        console.log(won);
         let table = document.getElementById('winners_body'),
             row = document.createElement('tr'),
             cell1 = document.createElement('td'),
@@ -219,7 +221,7 @@
         cell1.appendChild(img);
         cell2.innerHTML = person.name;
         cell3.classList.add('winner_count');
-        cell3.innerHTML = won.toString();
+        cell3.innerHTML = won;
         row.appendChild(cell1);
         row.appendChild(cell2);
         row.appendChild(cell3);
