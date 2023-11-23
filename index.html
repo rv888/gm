@@ -245,7 +245,7 @@
     function runTimer(){
         winnerTimer = setTimeout(() => {
             console.log("Timer executed");
-            sortTable();
+           // sortTable();
         }, 4000);
     }
 
@@ -311,7 +311,7 @@
 
     document.getElementById('last_month').addEventListener('click', function(event) {
         event.preventDefault();
-        document.getElementById('winners_body').innerHTML = '';
+        //document.getElementById('winners_body').innerHTML = '';
         updateActiveLink('last_month');
         loadWinners("1_month.json");
     });
