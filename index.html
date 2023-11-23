@@ -212,7 +212,7 @@
         )
         sub.on('event', event => {
             var nostrJson = JSON.parse(event.content);
-            //console.log(nostrJson);
+            console.log(event);
             console.log(! people.includes(nostrJson.username));
             console.log(nostrJson.username);
             console.log(people);
