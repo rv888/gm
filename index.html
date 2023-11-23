@@ -304,6 +304,19 @@
             }
         }
     }
+    document.getElementById('last_7_days').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('winners_body').innerHTML = '';
+        updateActiveLink('last_7_days');
+        loadWinners("7_days.json");
+    });
+
+    document.getElementById('last_month').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('winners_body').innerHTML = '';
+        updateActiveLink('last_month');
+        loadWinners("1_month.json");
+    });
 
     loadWinners("7_days.json");
     updateActiveLink('last_7_days');
