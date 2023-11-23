@@ -196,7 +196,7 @@
         )
         sub.on('event', event => {
             var nostrJson = JSON.parse(event.content);
-            console.log(nostrJson);
+            //console.log(nostrJson);
             create_div(nostrJson, won);
         })
         sub.on('eose', () => {
