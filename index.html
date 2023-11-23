@@ -199,7 +199,7 @@
     let relays = ['wss://purplepag.es', 'wss://relay.damus.io', 'wss://relay.damus.io',"wss://relayable.org",
         "wss://relay.primal.net"];
     const pool = new window.NostrTools.SimplePool();
-    let winnerTimer;
+    let winnerTimer, people = [];
     function get_user_details(pk,won){
         let sub = pool.sub(
             [...relays],
@@ -213,7 +213,10 @@
         sub.on('event', event => {
             var nostrJson = JSON.parse(event.content);
             //console.log(nostrJson);
-            create_div(nostrJson, won);
+            if (! people.includes(nostrJson.username)) {
+                people.append(nostrJson.username);
+                create_div(nostrJson, won);
+            }
         })
         sub.on('eose', () => {
             sub.unsub()
@@ -224,6 +227,7 @@
     function create_div(person,won){
         console.log(person);
         console.log(won);
+
         let table = document.getElementById('winners_body'),
             row = document.createElement('tr'),
             cell1 = document.createElement('td'),
@@ -274,8 +278,8 @@
         document.getElementById('last_7_days').classList.remove('active-link');
         document.getElementById('last_month').classList.remove('active-link');
         document.getElementById(activeLinkId).classList.add('active-link');
+        people = [];
     }
-
 
     function sortTable() {
         console.log("sortTable");
