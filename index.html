@@ -278,6 +278,7 @@
 
 
     function sortTable() {
+        console.log("sortTable");
         var tbody, rows, switching, i, x, y, shouldSwitch;
         tbody = document.getElementById("winners").getElementsByTagName("tbody")[0];
         switching = true;
@@ -302,6 +303,7 @@
                 rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                 switching = true;
             }
+            console.log("SW");
         }
     }
     document.getElementById('last_7_days').addEventListener('click', function(event) {
