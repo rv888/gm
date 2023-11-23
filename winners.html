@@ -1,0 +1,126 @@
+<div id="winners"></div>
+
+<script src="https://unpkg.com/nostr-tools/lib/nostr.bundle.js"></script>
+<script>
+
+
+var pk = "7dd040804955e939e63c9dd6b60aedf6c29b6ce7d3dcc91f37f06c3836f6813d";
+
+const relay = window.NostrTools.relayInit('wss://purplepag.es');
+
+
+/*
+
+relay.on('connect', () => {
+  console.log(`connected to ${relay.url}`)
+})
+relay.on('error', () => {
+  console.log(`failed to connect to ${relay.url}`)
+})
+
+ relay.connect()
+
+let sub = relay.sub([
+  {
+    kinds: [0],
+    authors: [pk],
+  },
+])
+*/
+
+
+let relays = ['wss://purplepag.es', 'wss://relay.damus.io'];
+
+const pool = new window.NostrTools.SimplePool();
+
+function get_user_details(pk,won){
+
+
+    let sub = pool.sub(
+    [...relays],
+    [
+      {
+        kinds: [0],
+        authors: [pk],
+      },
+    ],
+  )
+
+
+
+  sub.on('event', event => {
+    console.log('got event:', event)
+    var nostrJson = JSON.parse(event.content);
+
+    console.log(nostrJson);
+
+    create_div(nostrJson, won);
+    
+
+  })
+
+
+
+  sub.on('eose', () => {
+    sub.unsub()
+  })
+
+}
+
+function create_div(person,won){
+
+  console.log(person);
+  var winners = document.getElementById('winners');
+
+
+    //document.getElementById('picture1').src = nostrJson.picture;
+    //document.getElementById('name').innerHTML = nostrJson.display_name;
+
+    var newElement = document.createElement('div');
+    newElement.innerHTML = person.display_name + ": " + won.toString();
+
+    // Append the new element to the div
+    winners.appendChild(newElement);
+
+}
+
+
+
+
+  //let pk1 = window.NostrTools.getPublicKey(sk1)
+
+var now = new Date();
+var midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+var epochTime = midnight.getTime();
+var epochSeconds = Math.floor(epochTime / 1000);
+
+console.log(epochSeconds)
+
+var filename = "7_days_"+epochSeconds.toString()+ ".json"
+
+var url = "https://vsm.sfo3.cdn.digitaloceanspaces.com/wm/"+filename;
+
+console.log(url);
+
+
+fetch(url)  // Replace with your JSON URL
+    .then(response => response.json()) // Convert the response to JSON
+    .then(data => {
+        // Loop through the key-value pairs
+        Object.entries(data).forEach(([key, value]) => {
+            console.log(`Key: ${key}, Value: ${value}`);
+            get_user_details(key, value);
+            
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching JSON:', error);
+    });
+
+
+
+
+</script>
+
+<!-- <img src="" id="picture1"> -->
+
