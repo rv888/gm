@@ -247,18 +247,22 @@
         }, 6000);
     }
 
-    var filename = "7_days.json", url = "https://vsm.sfo3.cdn.digitaloceanspaces.com/wm/"+filename;
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            Object.entries(data).forEach(([key, value]) => {
-                console.log(`Key: ${key}, Value: ${value}`);
-                get_user_details(key, value);
+    function loadWinners(filename) {
+        var url = "https://vsm.sfo3.cdn.digitaloceanspaces.com/wm/" + filename;
+        console.log(url);
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                Object.entries(data).forEach(([key, value]) => {
+                    console.log(`Key: ${key}, Value: ${value}`);
+                    get_user_details(key, value);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching JSON:', error);
             });
-        })
-        .catch(error => {
-            console.error('Error fetching JSON:', error);
-        });
+    }
+
 
     function sortTable() {
         var tbody, rows, switching, i, x, y, shouldSwitch;
@@ -288,7 +292,8 @@
         }
     }
 
-
+    loadWinners("7_days.json");
+    
     runTimer();
 
 
