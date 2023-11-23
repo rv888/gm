@@ -263,6 +263,12 @@
             });
     }
 
+    function updateActiveLink(activeLinkId) {
+        document.getElementById('last_7_days').classList.remove('active-link');
+        document.getElementById('last_month').classList.remove('active-link');
+        document.getElementById(activeLinkId).classList.add('active-link');
+    }
+
 
     function sortTable() {
         var tbody, rows, switching, i, x, y, shouldSwitch;
@@ -293,6 +299,7 @@
     }
 
     loadWinners("7_days.json");
+    updateActiveLink('last_7_days');
     
     runTimer();
 
