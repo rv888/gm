@@ -257,14 +257,14 @@
         while (switching) {
             switching = false;
             rows = tbody.rows;
-            // Loop through all table rows (except the first, which contains table headers)
+            // Loop through all table rows
             for (i = 0; i < (rows.length - 1); i++) {
                 shouldSwitch = false;
                 // Get the two elements you want to compare, one from current row and one from the next
                 x = rows[i].getElementsByTagName("td")[2];
                 y = rows[i + 1].getElementsByTagName("td")[2];
-                // Check if the two rows should switch place, based on the direction, asc or desc
-                if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+                // Check if the two rows should switch place, based on descending order
+                if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
                     shouldSwitch = true;
                     break;
                 }
@@ -276,6 +276,7 @@
             }
         }
     }
+
 
     runTimer();
 
