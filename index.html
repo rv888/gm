@@ -86,6 +86,10 @@
         .winner_count {
             font-size: 1.2rem;
         }
+        .active-link {
+            text-decoration: underline;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -153,7 +157,7 @@
 
 <section class="bg-dark py-4">
     <div class="container mt-4">
-        <h2>Top Trivia Winners (Last 7 Days)</h2>
+        <h2>Top Trivia Winners <span class="durations"><a href="" id="last_7_days">Last 7 Days</a> | <a href="" id="last_month">Last Month</a> | </span></h2>
         <table class="table table-responsive col-sm-10" id="winners">
             <thead>
             <tr>
@@ -236,19 +240,6 @@
         }, 4000);
     }
 
-    var filename = "7_days.json", url = "https://vsm.sfo3.cdn.digitaloceanspaces.com/wm/"+filename;
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            Object.entries(data).forEach(([key, value]) => {
-                console.log(`Key: ${key}, Value: ${value}`);
-                get_user_details(key, value);
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching JSON:', error);
-        });
-
     function sortTable() {
         var tbody, rows, switching, i, x, y, shouldSwitch;
         tbody = document.getElementById("winners").getElementsByTagName("tbody")[0];
@@ -277,6 +268,42 @@
         }
     }
 
+    function updateActiveLink(activeLinkId) {
+        document.getElementById('last_7_days').classList.remove('active-link');
+        document.getElementById('last_month').classList.remove('active-link');
+        document.getElementById(activeLinkId).classList.add('active-link');
+    }
+
+    function loadWinners(filename) {
+        var url = "https://vsm.sfo3.cdn.digitaloceanspaces.com/wm/" + filename;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                Object.entries(data).forEach(([key, value]) => {
+                    console.log(`Key: ${key}, Value: ${value}`);
+                    get_user_details(key, value);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching JSON:', error);
+            });
+    }
+
+    loadWinners("7_days.json");
+    updateActiveLink('last_7_days');
+
+    document.getElementById('last_7_days').addEventListener('click', function(event) {
+        event.preventDefault();
+        updateActiveLink('last_7_days');
+        loadWinners("7_days.json");
+    });
+
+    document.getElementById('last_month').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('winners_body').innerHTML = '';
+        updateActiveLink('last_month');
+        loadWinners("1_month.json");
+    });
 
     runTimer();
 
