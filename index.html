@@ -183,6 +183,7 @@
 
     let relays = ['wss://purplepag.es', 'wss://relay.damus.io'];
     const pool = new window.NostrTools.SimplePool();
+    let winnerTimer;
     function get_user_details(pk,won){
         let sub = pool.sub(
             [...relays],
@@ -212,7 +213,7 @@
             cell3 = document.createElement('td'),
             img = document.createElement('img');
         img.src = person.picture;
-        img.alt = person.display_name;
+        img.alt = person.name;
         img.classList.add('img-fluid');
         cell1.classList.add('image-column');
         cell1.appendChild(img);
@@ -223,6 +224,16 @@
         row.appendChild(cell2);
         row.appendChild(cell3);
         table.appendChild(row);
+
+        clearTimeout(winnerTimer);
+        runTimer();
+    }
+
+    function runTimer(){
+        winnerTimer = setTimeout(() => {
+            console.log("Timer executed");
+            sortTable();
+        }, 4000);
     }
 
     var filename = "7_days.json", url = "https://vsm.sfo3.cdn.digitaloceanspaces.com/wm/"+filename;
@@ -237,6 +248,37 @@
         .catch(error => {
             console.error('Error fetching JSON:', error);
         });
+
+    function sortTable() {
+        var tbody, rows, switching, i, x, y, shouldSwitch;
+        tbody = document.getElementById("winners").getElementsByTagName("tbody")[0];
+        switching = true;
+        // Continue until no switching has been done
+        while (switching) {
+            switching = false;
+            rows = tbody.rows;
+            // Loop through all table rows (except the first, which contains table headers)
+            for (i = 0; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                // Get the two elements you want to compare, one from current row and one from the next
+                x = rows[i].getElementsByTagName("td")[2];
+                y = rows[i + 1].getElementsByTagName("td")[2];
+                // Check if the two rows should switch place, based on the direction, asc or desc
+                if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+            if (shouldSwitch) {
+                // If a switch has been marked, make the switch and mark that a switch has been done
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+
+    runTimer();
+
 
 </script>
 
