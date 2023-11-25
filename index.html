@@ -201,12 +201,7 @@
     const pool = new window.NostrTools.SimplePool();
     let winnerTimer, people = [];
     function get_user_details(pk,won){
-        console.log("get_user_details");
-        console.log(pk);
-
         var pubKey = window.NostrTools.nip19.npubEncode(pk);
-        console.log("pubKey", pubKey);
-
 
         let sub = pool.sub(
             [...relays],
@@ -237,12 +232,16 @@
             cell1 = document.createElement('td'),
             cell2 = document.createElement('td'),
             cell3 = document.createElement('td'),
+            a = document.createElement('a'),
             img = document.createElement('img');
         img.src = person.picture;
         img.alt = person.name;
         img.classList.add('img-fluid');
+        a.href = "nostr:"+pubKey;
+        a.appendChild(img);
+
         cell1.classList.add('image-column');
-        cell1.appendChild(img);
+        cell1.appendChild(a);
         cell2.innerHTML = person.name;
         cell3.classList.add('winner_count');
         cell3.innerHTML = won;
