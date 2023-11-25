@@ -201,6 +201,13 @@
     const pool = new window.NostrTools.SimplePool();
     let winnerTimer, people = [];
     function get_user_details(pk,won){
+        console.log("get_user_details");
+        console.log(pk);
+
+        var pubKey = window.NostrTools.npubEncode(pk);
+        console.log("pubKey", pubKey);
+
+
         let sub = pool.sub(
             [...relays],
             [
@@ -214,9 +221,6 @@
             var nostrJson = JSON.parse(event.content);
             if (! people.includes(event.pubkey)) {
                 people.push(event.pubkey);
-
-                var pubKey = window.NostrTools.npubEncode(event.pubkey);
-
                 create_div(nostrJson, won, pubKey);
             }
         })
@@ -227,8 +231,6 @@
     }
 
     function create_div(person,won, pubKey){
-
-        console.log("pubKey", pubKey);
 
         let table = document.getElementById('winners_body'),
             row = document.createElement('tr'),
