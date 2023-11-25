@@ -214,7 +214,10 @@
             var nostrJson = JSON.parse(event.content);
             if (! people.includes(event.pubkey)) {
                 people.push(event.pubkey);
-                create_div(nostrJson, won);
+
+                var pubKey = window.NostrTools.npubEncode(event.pubkey);
+
+                create_div(nostrJson, won, pubKey);
             }
         })
         sub.on('eose', () => {
@@ -223,7 +226,9 @@
 
     }
 
-    function create_div(person,won){
+    function create_div(person,won, pubKey){
+
+        console.log("pubKey", pubKey);
 
         let table = document.getElementById('winners_body'),
             row = document.createElement('tr'),
