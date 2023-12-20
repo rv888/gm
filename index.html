@@ -216,6 +216,7 @@
                     }
                 },
                 oneose() {
+                    sortTable();
                     sub.close()
                 }
             }
@@ -248,8 +249,8 @@
         row.appendChild(cell3);
         table.appendChild(row);
 
-        clearTimeout(winnerTimer);
-        runTimer();
+        //clearTimeout(winnerTimer);
+        //runTimer();
     }
 
     function runTimer(){
@@ -325,7 +326,7 @@
     loadWinners("7_days.json");
     updateActiveLink('last_7_days');
 
-    runTimer();
+    //runTimer();
 
 
 </script>
